@@ -1,3 +1,5 @@
+import pymysql
+pymysql.install_as_MySQLdb()
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
@@ -122,8 +124,5 @@ def booking_detail(id):
             return jsonify({"success": True}), 200
         except Exception as e:
             return jsonify({"error": str(e)}), 500
-
 if __name__ == '__main__':
-    with app.app_context():
-        db.create_all()
-    app.run(debug=True, port=5000)
+    app.run(host="0.0.0.0", port=5000)
